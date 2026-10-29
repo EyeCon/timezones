@@ -46,7 +46,7 @@ doAssert bangkok.countries == @["TH", "KH", "LA", "VN"]
 - [Generated docs for times/posixtimezones module](https://gulpf.github.io/timezones/posixtimezones.html).
 
 ## Advanced usage
-The timezone definitions from a [IANA timezone database](https://en.wikipedia.org/wiki/Tz_database) release are stored in a JSON file. This repo includes the currently latest release, but no guarantee is given as to how fast the bundled timezone database is updated when IANA releases a new version. The JSON file can either be embeeded into the executable (which is the default behavior), or be loaded at runtime.
+The timezone definitions from a [IANA timezone database](https://en.wikipedia.org/wiki/Tz_database) release are stored in a JSON file. This repo includes the currently latest release, but no guarantee is given as to how fast the bundled timezone database is updated when IANA releases a new version. The JSON file can either be embedded into the executable (which is the default behavior), or be loaded at runtime.
 
 If you want control over when the timezone definitions are updated, there are two options:
 - Embeed a custom JSON file
@@ -54,14 +54,14 @@ If you want control over when the timezone definitions are updated, there are tw
 
 Both options require you to generate the JSON file yourself. See [fetchjsontimezones](#fetchjsontimezones) for information on how to accomplish that.
 
-To embeed a custom JSON file, simply pass `-d:timezonesPath={path}>`, where `{path}` is the **absolute** path to the file.
+To embed a custom JSON file, simply pass `-d:timezonesPath={path}>`, where `{path}` is the **absolute** path to the file.
 
 To load a JSON definition at runtime, either of these procs can be used:
 ```nim
 proc parseJsonTimezones*(content: string): TzData
 proc loadJsonTimezones*(path: string): TzData # Not available for the JS backend
 ```
-If you load the JSON timezones at runtime, it's likely that you don't need the bundled definitions. To disable the embeededing of the bundled JSON file, `-d:timezonesNoEmbeed` can be passed.
+If you load the JSON timezones at runtime, it's likely that you don't need the bundled definitions. To disable the embedding of the bundled JSON file, `-d:timezonesNoEmbeed` can be passed.
 
 ## fetchjsontimezones <a name="fetchjsontimezones"></a>
 
