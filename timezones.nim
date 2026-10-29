@@ -45,8 +45,8 @@ when not defined(js):
 when not defined(nimdoc):
     export coordinates
 
-when defined(timezonesPath) and defined(timezonesNoEmbeed):
-    {.warning: "Both `timezonesPath` and `timezonesNoEmbeed` was passed".}
+when defined(timezonesPath) and defined(timezonesNoEmbed):
+    {.warning: "Both `timezonesPath` and `timezonesNoEmbed` was passed".}
 
 type
     Country* = string ## \
@@ -276,7 +276,7 @@ when not defined(nimsuggest):
                     timezonesPath & "'".}
         {.hint: "Embedding custom tz data file: " & timezonesPath.}
 
-when not defined(timezonesNoEmbeed) or defined(nimdoc):
+when not defined(timezonesNoEmbed) or defined(nimdoc):
     const content = staticRead timezonesPath
     defaultTzDb = parseTzData(content).TimezoneDb
 

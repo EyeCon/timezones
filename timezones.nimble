@@ -14,7 +14,7 @@ requires "nim >= 0.19.9"
 # Tasks
 
 task fetch, "Fetch the timezone database":
-    exec "nim c -d:timezonesNoEmbeed -r timezones/fetchjsontimezones " &
+    exec "nim c -d:timezonesNoEmbed -r timezones/fetchjsontimezones " &
         TzDbVersion &  " --out:" & thisDir() / TzDbVersion & ".json"
 
 task test, "Run the tests":

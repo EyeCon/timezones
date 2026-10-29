@@ -31,7 +31,7 @@ echo initDateTime(1, mJan, 1850, 00, 00, 00, stockholm)
 # Like above, but returns a `TimezoneInfo` object which contains some
 # extra metadata.
 let stockholmInfo = tzInfo"Europe/Stockholm"
-# Countries are specified with it's two character country code,
+# Countries are specified with its two character country code,
 # see ISO 3166-1 alpha-2.
 doAssert stockholmInfo.countries == @["SE"]
 doAssert stockholmInfo.timezone == stockholm
@@ -49,7 +49,7 @@ doAssert bangkok.countries == @["TH", "KH", "LA", "VN"]
 The timezone definitions from a [IANA timezone database](https://en.wikipedia.org/wiki/Tz_database) release are stored in a JSON file. This repo includes the currently latest release, but no guarantee is given as to how fast the bundled timezone database is updated when IANA releases a new version. The JSON file can either be embedded into the executable (which is the default behavior), or be loaded at runtime.
 
 If you want control over when the timezone definitions are updated, there are two options:
-- Embeed a custom JSON file
+- Embed a custom JSON file
 - Load a JSON file at runtime
 
 Both options require you to generate the JSON file yourself. See [fetchjsontimezones](#fetchjsontimezones) for information on how to accomplish that.
@@ -61,7 +61,7 @@ To load a JSON definition at runtime, either of these procs can be used:
 proc parseJsonTimezones*(content: string): TzData
 proc loadJsonTimezones*(path: string): TzData # Not available for the JS backend
 ```
-If you load the JSON timezones at runtime, it's likely that you don't need the bundled definitions. To disable the embedding of the bundled JSON file, `-d:timezonesNoEmbeed` can be passed.
+If you load the JSON timezones at runtime, it's likely that you don't need the bundled definitions. To disable the embedding of the bundled JSON file, `-d:timezonesNoEmbed` can be passed.
 
 ## fetchjsontimezones <a name="fetchjsontimezones"></a>
 

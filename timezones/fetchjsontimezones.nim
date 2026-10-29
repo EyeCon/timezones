@@ -30,9 +30,19 @@ else:
         createDir UnpackDir
         doAssert execCmd(fmt"tar -xf {tarFile} -C {UnpackDir}") == 0
 
+    proc findZic(): string =
+        # On Debian `zic` lives in /usr/sbin, which is usually not in the
+        # PATH of unprivileged users.
+        result = findExe("zic")
+        if result.len == 0:
+            const DebianZic = "/usr/sbin/zic"
+            if DebianZic.fileExists:
+                result = DebianZic
+        doAssert result.len > 0, "Could not find the 'zic' executable"
+
     proc zic(regions: Option[seq[string]]) =
         let files = regions.get(DefaultRegions).mapIt(UnpackDir / it).join(" ")
-        doAssert execCmd(fmt"zic -d {ZicDir} {files}") == 0
+        doAssert execCmd(fmt"{findZic()} -d {ZicDir} {files}") == 0
 
     proc fetchTimezoneDatabase*(version, dest: string,
                                 tznames, regions: Option[seq[string]]) =
